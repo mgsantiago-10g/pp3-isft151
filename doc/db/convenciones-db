@@ -1,0 +1,11 @@
+El desarrollo de la base de datos seguirá las siguientes convenciones:
+-La base de datos estará escrita en idioma ingles.
+-La base de datos usará IDs auto-incrementables.
+-Las entidades deberan estar escritas en singular, minuscula.
+-En caso de las tablas intermedias, los nombres deben ser representativos de la relacion entre las entidades.
+-Los espacios en blanco en los nombres de las tablas, y de los procedimientos almacenados deberán ser reemplazados por guiones bajos.
+-El nombre de las foreign key sera: [tabla]_id
+-Todos los Stored Procedures, tendran el prefijo usp_[stored procedure] // agregar el nombre del "modulo/clase"
+-En los Stored Procedures no se usarán alias, sino el identificador de la tabla.
+-El nombre de los parametros de los SP deberan ser lo más descriptivos y simples posibles.
+
