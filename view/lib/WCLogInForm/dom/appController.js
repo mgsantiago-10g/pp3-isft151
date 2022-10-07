@@ -1,0 +1,7 @@
+
+class AppController
+{
+
+}
+
+export { AppController }
