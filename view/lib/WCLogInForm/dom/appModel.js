@@ -1,0 +1,7 @@
+
+class AppModel
+{
+
+}
+
+export { AppModel }
