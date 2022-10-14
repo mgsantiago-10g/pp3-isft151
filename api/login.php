@@ -1,9 +1,14 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');
+include_once( "./lib/database.php");
 
-include_once( "./database.php");
 
 $json_body = file_get_contents('php://input');
 $object = json_decode($json_body);
+
+$connection = new Connection();
+
+$connection_isft_db = $connection->get_connection_isft_db();
 
 $password = $object->password;
 $username = $object->username;
@@ -12,7 +17,7 @@ function createUserSession( $id_user )
 {
 	$token = hash('sha256', $username.$password);
 
-	$SQLStatement = $connection->prepare("CALL `create_user_session`(:id_user, :token)");
+	$SQLStatement = $connection_isft_db->prepare("CALL `create_user_session`(:id_user, :token)");
 	$SQLStatement->bindParam( ':id_user', $id_user );
 	$SQLStatement->bindParam( ':token', $token );
 	$SQLStatement->execute();
@@ -26,7 +31,7 @@ try
 	//ANTES de enviar el comando SQL al motor de base de datos.
 
 	//PRIMER PASO: Validar la existencia del usuario y su contraseña
-	$SQLStatement = $connection->prepare("CALL `auth_user`(:username, :password)");
+	$SQLStatement = $connection_isft_db->prepare("CALL `auth_user`(:username, :password)");
 	$SQLStatement->bindParam( ':username', $username );
 	$SQLStatement->bindParam( ':password', $password );
 	$SQLStatement->execute();
@@ -44,7 +49,7 @@ try
 
 		$token = hash('sha256', $username.$password);
 
-		$SQLStatement2 = $connection->prepare("CALL `create_user_session`(:id_user, :token)");
+		$SQLStatement2 = $connection_isft_db->prepare("CALL `create_user_session`(:id_user, :token)");
 		$SQLStatement2->bindParam( ':id_user', $id_user );
 		$SQLStatement2->bindParam( ':token', $token );
 		$SQLStatement2->execute();
