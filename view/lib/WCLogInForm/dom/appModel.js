@@ -1,7 +1,0 @@
-
-class AppModel
-{
-
-}
-
-export { AppModel }
