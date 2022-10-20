@@ -6,9 +6,9 @@ include_once( "./lib/database.php");
 $json_body = file_get_contents('php://input');
 $object = json_decode($json_body);
 
-$connection = new Connection();
+$connection = new DatabaseConnection();
 
-$connection_isft_db = $connection->get_connection_isft_db();
+$connection_isft_db = $connection->getInstance();
 
 $password = $object->password;
 $username = $object->username;
@@ -47,13 +47,7 @@ try
 		//caso favorable (el array no está vacío y se espera un array con la estructura de la respuesta que genera el procedimiento)
 		$id_user = $db_response[0]["id"];
 
-		$token = hash('sha256', $username.$password);
-
-		$SQLStatement2 = $connection_isft_db->prepare("CALL `create_user_session`(:id_user, :token)");
-		$SQLStatement2->bindParam( ':id_user', $id_user );
-		$SQLStatement2->bindParam( ':token', $token );
-		$SQLStatement2->execute();
-		$SQLStatement2->closeCursor();
+		$token = createUserSession($id_user);
 
 		$response_client = [ "status" => "OK", "response" => $token ];
 	}

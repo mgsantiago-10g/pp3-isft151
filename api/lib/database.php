@@ -1,6 +1,6 @@
 <?php
 
-    class Connection{
+    class DatabaseConnection{
         private $isft_db;
 
         public function __construct()
@@ -8,13 +8,14 @@
 
             try
             {
-                $json_path = 'http://localhost/pp-isft151-2022/config/config.json';
-                $json_obj = file_get_contents($json_path);
-                $array = json_decode($json_obj, true);
-                $isft_db_host = $array['databases']['isft-db']["host"];
-                $isft_db_user = $array['databases']['isft-db']["user"];
-                $isft_db_pass = $array['databases']['isft-db']["pass"];
-                $isft_db_name = $array['databases']['isft-db']["db_name"];
+                $database_config_path = __DIR__.'/../../config/database.json';
+                $database_config_json = file_get_contents($database_config_path);
+
+                $database_config_obj = json_decode($database_config_json);
+                $isft_db_host = $database_config_obj->host;
+                $isft_db_user = $database_config_obj->user;
+                $isft_db_pass = $database_config_obj->pass;
+                $isft_db_name = $database_config_obj->name;
 
                 $this->isft_db = new PDO('mysql:host='.$isft_db_host.';dbname='.$isft_db_name, $isft_db_user, $isft_db_pass );
                 $this->isft_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -32,7 +33,7 @@
 
         }
 
-        public function get_connection_isft_db()
+        public function getInstance()
         {
             return $this->isft_db;
         }
