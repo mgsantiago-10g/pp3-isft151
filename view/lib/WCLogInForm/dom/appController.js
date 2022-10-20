@@ -1,6 +1,10 @@
 
 class AppController
 {
+    constructor(){
+
+        
+    }
 
 }
 

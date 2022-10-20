@@ -6,8 +6,8 @@ class GenericButton extends HTMLElement
         super();
 
         this.genericButton = document.createElement('button');
-        this.genericButton.className = 'genericButton';
-        this.genericButton.innerText = name
+        this.genericButton.className = 'w3-button';
+        this.genericButton.innerText = name;
 
         this.appendChild(this.genericButton);
     }

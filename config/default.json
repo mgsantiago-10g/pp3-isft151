@@ -1,0 +1,9 @@
+{
+"db":
+    {
+        "host":"127.0.0.1:5500",
+        "user":"root",
+        "pass":"root",
+        "db_name":"isft-db"
+    } 
+}    
