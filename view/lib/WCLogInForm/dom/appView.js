@@ -1,6 +1,4 @@
-import { GenericButton } from '../items/genericButton.js';
 import { RegisterForm } from '../components/registerForm.js';
-import { AppModel } from './appModel.js'
 
 
 class AppView extends HTMLElement
@@ -8,6 +6,8 @@ class AppView extends HTMLElement
     constructor(model)
     {
         super();
+
+        this.innerModel = model;
 
         this.id = 'view';
 
