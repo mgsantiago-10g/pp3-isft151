@@ -251,9 +251,14 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     left:50%;
     transform: translate(-50%, -50%);
     padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    justify-content: center;
+    
 }
 
 .register-form h1
 {
     font-size: 1rem;
+
 }

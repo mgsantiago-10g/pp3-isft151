@@ -1,4 +1,5 @@
 import { RegisterForm } from '../components/registerForm.js';
+import { AppController } from './appController.js';
 
 
 class AppView extends HTMLElement
