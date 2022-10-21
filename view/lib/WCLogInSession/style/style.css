@@ -1,0 +1,27 @@
+.bgimage {
+    background-size: 100%;
+    background-color: #333333;
+}
+.container{
+    display:flex;
+	align-items: center;
+	justify-content: center;
+    width: 25%;
+}
+.logo{
+    width: 15%;
+    display:flex;
+    position: relative;
+    text-align: center;
+	margin-top: 10%;
+    margin-left:43%;
+    margin-bottom:5%;
+}
+.login{
+    font-weight : bold;
+    color: white;
+}
+.text{
+    margin-bottom: 10%;
+}
+
