@@ -5,15 +5,12 @@ class GenericButton extends HTMLElement
     {
         super();
 
-
-
         this.genericButton = document.createElement('button');
-        this.genericButton.className = 'w3-button';
-        this.genericButton.innerText = name;
-
+        this.genericButton.className = 'genericButton';
+        this.genericButton.innerText = name
+        this.genericButton.classList.add('w3-button', 'w3-block', 'w3-round-large', 'w3-medium', 'w3-ripple');
 
     }
-
 
     connectedCallback()
     {

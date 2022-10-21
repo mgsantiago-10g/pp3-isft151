@@ -1,5 +1,6 @@
+import { InicialPage } from '../components/inicialPage.js';
 import { RegisterForm } from '../components/registerForm.js';
-import { AppController } from './appController.js';
+import { AppModel } from './appModel.js'
 
 
 class AppView extends HTMLElement
@@ -12,14 +13,16 @@ class AppView extends HTMLElement
 
         this.id = 'view';
 
-        this.registerForm = new RegisterForm();
+        this.inicialPage = new InicialPage();
 
+        //this.registerForm = new RegisterForm();
 
     }
 
     connectedCallback()
     {
-        this.appendChild(this.registerForm) 
+        this.appendChild(this.inicialPage);
+        this.appendChild(this.registerForm); 
     }
 }
 
