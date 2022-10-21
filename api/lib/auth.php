@@ -14,10 +14,10 @@ class AuthManager
 	
 	public function __construct()
     {
-		$connection = (new $DatabaseConnection())->getInstance();
-	};
+		$connection = (new DatabaseConnection())->getInstance();
+	}
 	
-	public function login( string:username, string:password ) : string
+	public function login( string $username, string $password ) : string
 	{
 		if ($username == "" || $password == "")
 		{
@@ -27,7 +27,7 @@ class AuthManager
 		else 
 		{
 			//Validate user existence
-			$SQLAuthStatement = $connection->prepare("CALL `usp-authenticate-user`(:username)");
+			$SQLAuthStatement = $this->connection->prepare("CALL `usp-authenticate-user`(:username)");
 			$SQLAuthStatement->bindParam(':username', $username);
 			$SQLAuthStatement->execute();
 			$response = $SQLAuthStatement->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +41,7 @@ class AuthManager
 					$token = hash("sha256", $username . $response[0]["password"]);
 					//If valid, create token and establish session
 					//toDo: take into account possible errors
-					$SQLSessionStatement = $connection->prepare("CALL `usp-create-user-session`(:id_user, :token)");
+					$SQLSessionStatement =$this->connection->prepare("CALL `usp-create-user-session`(:id_user, :token)");
 					$SQLSessionStatement->bindParam(':id_user', $id_user);
 					$SQLSessionStatement->bindParam(':token', $token);
 					$SQLSessionStatement->execute();
@@ -59,14 +59,14 @@ class AuthManager
 			}
 		}
 		
-		//return token
+		return $token;
 	}
 	
-	public function logout( string:token )
+	public function logout( string $token )
 	{
 		if( $this->validateSession($token)) 
 		{
-			$SQLStatement = $connection->prepare("CALL `usp-delete-user-session`(:token)");
+			$SQLStatement = $this->connection->prepare("CALL `usp-delete-user-session`(:token)");
 			$SQLStatement->bindParam(':token', $token);
 			$SQLStatement->execute();
 		}
@@ -76,11 +76,11 @@ class AuthManager
 		}
 	}
 
-	public function validateSession( string:token ) : boolean
+	public function validateSession( string $token ) : bool
 	{
 		$tokenStatus = null;
 		
-		$SQLStatement = $connection->prepare("CALL `usp-check-session-token`(:token)");
+		$SQLStatement = $this->connection->prepare("CALL `usp-check-session-token`(:token)");
         $SQLStatement->bindParam(':token',  $token );
         $SQLStatement->execute();
         $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
