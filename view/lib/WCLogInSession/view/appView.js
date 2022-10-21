@@ -6,10 +6,10 @@ class AppView extends HTMLElement
 
         super(); 
         this.container = document.createElement('div');
-        this.container.classList.add("container","w3-container", "w3-modal-content", "w3-card-4", "w3-animate-zoom", "w3-center");
+        this.container.classList.add("login-container","w3-container", "w3-modal-content", "w3-card-4", "w3-animate-zoom", "w3-center");
         
         this.logo = document.createElement('img');
-        this.logo.classList.add("w3-center","logo");
+        this.logo.classList.add("w3-center","login-logo");
         this.logo.src = './items/logo.png';
         
         
@@ -29,7 +29,7 @@ class AppView extends HTMLElement
 
         this.passwordLabel = document.createElement('label');
         this.passwordLabel.innerText = 'Contraseña';
-        this.passwordLabel.classList.add("login","text");
+        this.passwordLabel.classList.add("login-button","text");
         
 
         this.passwordInput = document.createElement('input');
