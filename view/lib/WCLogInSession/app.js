@@ -1,4 +1,4 @@
-import {AppView} from './view/appView';
+import {AppView} from './view/appView.js';
 //import {HomeModel} from './model.js';
 
 function startGUIApplication()
