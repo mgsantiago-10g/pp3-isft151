@@ -6,7 +6,7 @@
  * https://www.gnu.org/licenses/gpl-3.0
  **/
 
-include_once "./lib/auth.php";
+include_once "./lib/AuthHandler.php";
 
 $input = json_decode(file_get_contents('php://input'));
 
