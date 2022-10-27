@@ -19,22 +19,38 @@
 
     public function addUser(int $group_id, int $user_id)
     {
-        
+        $SQLStatement = $this->connection->prepare("CALL `usp_create_group_user_members`(:groupId, :userId)");
+        $SQLStatement->bindParam(':groupId', $group_id);
+        $SQLStatement->bindParam(':userId', $user_id);
+        $SQLStatement->execute();
     }
 
     public function removeUser(int $group_id, int $user_id)
     {
+        $SQLStatement = $this->connection->prepare("CALL `usp_delete_group_user_members`(:groupId, :userId)");
+        $SQLStatement->bindParam(':groupId', $group_id);
+        $SQLStatement->bindParam(':userId', $user_id);
+        $SQLStatement->execute();
         
     }
 
     public function getUser(int $group_id, int $user_id)
     {
+        $SQLStatement = $this->connection->prepare("CALL `usp_get_group_user_members`(:groupId, :userId)");
+        $SQLStatement->bindParam(':groupId', $group_id);
+        $SQLStatement->bindParam(':userId', $user_id);
+        $SQLStatement->execute();
+        $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($response);
        
     }
 
     public function getAllUsers()
     {
-        
+        $SQLStatement = $this->connection->prepare("CALL `usp_getAll_group_user_members`");
+        $SQLStatement->execute();
+        $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($response);
     }
 
  }

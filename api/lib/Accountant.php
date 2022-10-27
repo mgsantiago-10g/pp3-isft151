@@ -19,16 +19,28 @@
 
     public function create(int $user_id, string $action, $date)
     {
-        
+        $SQLStatement = $this->connection->prepare("CALL ``(:userId, :action, :date)");
+        $SQLStatement->bindParam(':userId', $user_id);
+        $SQLStatement->bindParam(':action', $action);
+        $SQLStatement->bindParam(':date', $date);
+        $SQLStatement->execute();
     }
 
     public function get(int $user_id)
     {
-        
+        $SQLStatement = $this->connection->prepare("CALL ``(:userId)");
+        $SQLStatement->bindParam(':userId', $user_id);
+        $SQLStatement->execute();
+        $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($response);
     }
 
     public function getAll()
     {
+        $SQLStatement = $this->connection->prepare("CALL ``");
+        $SQLStatement->execute();
+        $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($response);
        
     }
 
