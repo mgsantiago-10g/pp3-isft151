@@ -11,6 +11,18 @@ class RegisterForm extends HTMLElement {
 
         this.classList.add('w3-container', 'register-form')
 
+        this.registerTitle = this.__setH1__("ISFT151 Register Form");
+        this.registerTitle.classList.add('register-title')
+
+        this.formContainer = document.createElement('div');
+        this.formContainer.classList.add('form-container')
+
+        this.leftSideContainer = document.createElement('div');
+        this.leftSideContainer.classList.add('left-side-container');
+
+        this.rightSideContainer = document.createElement('div');
+        this.rightSideContainer.classList.add('right-side-container');
+
         this.nameH1 = this.__setH1__("Nombre");
         
         this.nameInput = document.createElement('input')
@@ -57,7 +69,7 @@ class RegisterForm extends HTMLElement {
         this.repeatpasswordInput.className = 'repeatpasswordInput';
         this.repeatpasswordInput.innerText = 'Repetir Contraseña';
 
-        this.genericButton = new GenericButton('Submit');
+        this.genericButton = new GenericButton('Submit', 'submit-button');
         this.genericButton.addEventListener('click', ()=>{
             let formData = 
             {
@@ -80,32 +92,39 @@ class RegisterForm extends HTMLElement {
     
     connectedCallback() {
         
-        this.appendChild(this.nameH1)
-        this.appendChild(this.nameInput);
-        
-        this.appendChild(this.lastnameH1)
-        this.appendChild(this.lastnameInput);
+        this.appendChild(this.registerTitle)
 
-        this.appendChild(this.genderH1)
-        this.appendChild(this.genderInput);
+        this.appendChild(this.formContainer)
+
+        this.formContainer.appendChild(this.leftSideContainer);
+        this.formContainer.appendChild(this.rightSideContainer);
+
+        this.leftSideContainer.appendChild(this.nameH1);
+        this.leftSideContainer.appendChild(this.nameInput);
         
-        this.appendChild(this.phonenumberH1)
-        this.appendChild(this.phonenumberInput);
+        this.leftSideContainer.appendChild(this.lastnameH1)
+        this.leftSideContainer.appendChild(this.lastnameInput);
+
+        this.leftSideContainer.appendChild(this.genderH1)
+        this.leftSideContainer.appendChild(this.genderInput);
         
-        this.appendChild(this.adressH1);
-        this.appendChild(this.adressInput);
+        this.leftSideContainer.appendChild(this.phonenumberH1)
+        this.leftSideContainer.appendChild(this.phonenumberInput);
         
-        this.appendChild(this.emailH1);
-        this.appendChild(this.emailInput);
+        this.rightSideContainer.appendChild(this.adressH1);
+        this.rightSideContainer.appendChild(this.adressInput);
         
-        this.appendChild(this.idnumberH1);
-        this.appendChild(this.idnumberInput);
+        this.rightSideContainer.appendChild(this.emailH1);
+        this.rightSideContainer.appendChild(this.emailInput);
         
-        this.appendChild(this.passwordH1)
-        this.appendChild(this.passwordInput);
+        this.rightSideContainer.appendChild(this.idnumberH1);
+        this.rightSideContainer.appendChild(this.idnumberInput);
         
-        this.appendChild(this.repeatpasswordH1);
-        this.appendChild(this.repeatpasswordInput);
+        this.rightSideContainer.appendChild(this.passwordH1)
+        this.rightSideContainer.appendChild(this.passwordInput);
+        
+        this.rightSideContainer.appendChild(this.repeatpasswordH1);
+        this.rightSideContainer.appendChild(this.repeatpasswordInput);
         
         this.appendChild(this.genericButton)
     }

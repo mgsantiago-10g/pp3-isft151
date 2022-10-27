@@ -238,27 +238,83 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /* OUR CSS  */
 
+.submit-button
+{
+    background-color: #2196F3;
+    border: 1px solid #000;
+    transition: all 0.5s;
+}
+
+
 .register-form
 {
     display: flex;
     flex-direction: column;
-    width: 25vw;
-    text-align: center;
-    margin: auto;
-    background-color: #00000059;
+    text-align: center; 
+    border: 1px solid #00000059;
     position: absolute;
     top: 50%;
     left:50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 30px;
     margin-top: 20px;
-    border-radius: 20px;
-    justify-content: center;
+    border-radius: 10px;
     
+}
+
+.register-form .register-title
+{
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #2196F3;
+}
+
+.register-form .form-container
+{
+    display: flex;
+    margin: 20px 0;
+}
+
+.register-form .form-container h1
+{
+    font-family: sans-serif;
+}
+
+.register-form .form-container input
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.register-form .form-container input:focus
+{
+    padding: 1px 0px;
+}
+
+.register-form .leftSideContainer
+{
+    padding: 10px;
+}
+
+
+.register-form .rightSideContainer
+{
 }
 
 .register-form h1
 {
     font-size: 1rem;
+}
 
+@media (max-width: 600px) {
+    .register-form .form-container
+    {
+        flex-direction: column;
+    }
+
+    .register-form .form-container input
+    {
+        border: 1px solid black;
+    }
 }

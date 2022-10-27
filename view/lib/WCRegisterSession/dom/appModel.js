@@ -8,8 +8,8 @@ class AppModel
 
     sendRegisterData( data )
     {
-        return fetch('../../../../api/register.php', { method: 'post', body: JSON.stringify( data )}).then(response => response.json());
         console.log(data);
+        return fetch('../../../../api/register.php', { method: 'post', body: JSON.stringify( data )}).then(response => response.json());
     }
 
     sendLoginData( data )

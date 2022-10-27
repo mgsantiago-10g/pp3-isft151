@@ -1,0 +1,72 @@
+.genericButton
+{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgb(2,0,36);
+    color: #fff;
+    border: none;
+    box-shadow: 2px 3px 5px black;
+    transition: all .5s;
+}
+
+.genericButton:hover
+{
+    background-color: tomato !important;
+}
+
+.genericButton:active
+{
+    background-color: blueviolet !important;
+}
+
+.main-page
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.background-image{
+    background-image: url(../img/Fondo-Azul.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.logo-image{
+    background-image: url(../img/ISFT-Blanco.png);
+    background-repeat: no-repeat;
+    /* background-position: inherit; */
+    background-size: contain;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    /* margin: 0 auto; */
+    height: 10%;
+}
+
+.rest-height
+{
+    height: 100%;
+}
+
+#body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; 
+    /* height: 100%; */
+}
+
+#center-card
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 30%;
+}
+
+/* Copyright Agustin Souto 2022 / Chango */
