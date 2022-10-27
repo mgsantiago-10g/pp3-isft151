@@ -8,7 +8,7 @@ class GroupPermissionsHandler
 
     public function __construct()
     {
-        $this->connection = (new $DatabaseConnection())->getInstance();
+        $this->connection = (new DatabaseConnection())->getInstance();
     }
 
     public function addPermission($groupId, $actionId)

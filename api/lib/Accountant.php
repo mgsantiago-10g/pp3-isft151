@@ -14,7 +14,7 @@
 
     public function __construct()
     {
-        # $connection = (new DataBaseConnection())->getInstance();
+        $connection = (new DataBaseConnection())->getInstance();
     }
 
     public function create(int $user_id, string $action, $date)

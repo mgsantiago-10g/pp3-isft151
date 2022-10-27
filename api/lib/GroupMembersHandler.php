@@ -8,13 +8,13 @@
 
  include_once "./DatabaseConnection.php";
 
- class Accountant
+ class GroupMemberHandler
  {
     private $connection;
 
     public function __construct()
     {
-        # $connection = (new DataBaseConnection())->getInstance();
+        $connection = (new DataBaseConnection())->getInstance();
     }
 
     public function addUser(int $group_id, int $user_id)
