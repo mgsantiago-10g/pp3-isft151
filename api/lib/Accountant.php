@@ -19,7 +19,7 @@
 
     public function create(int $user_id, string $action, $date)
     {
-        $SQLStatement = $this->connection->prepare("CALL ``(:userId, :action, :date)");
+        $SQLStatement = $this->connection->prepare("CALL `usp_create_audit`(:userId, :action, :date)");
         $SQLStatement->bindParam(':userId', $user_id);
         $SQLStatement->bindParam(':action', $action);
         $SQLStatement->bindParam(':date', $date);
@@ -28,7 +28,7 @@
 
     public function get(int $user_id)
     {
-        $SQLStatement = $this->connection->prepare("CALL ``(:userId)");
+        $SQLStatement = $this->connection->prepare("CALL `usp_get_audit`(:userId)");
         $SQLStatement->bindParam(':userId', $user_id);
         $SQLStatement->execute();
         $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
@@ -37,7 +37,7 @@
 
     public function getAll()
     {
-        $SQLStatement = $this->connection->prepare("CALL ``");
+        $SQLStatement = $this->connection->prepare("CALL `usp_getAll_audit`");
         $SQLStatement->execute();
         $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($response);
