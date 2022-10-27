@@ -130,7 +130,7 @@ DECLARE EXIT HANDLER FOR SQLEXCEPTION
    START TRANSACTION;
         INSERT INTO user(username, password) VALUES (username, password);
         SET user_id = LAST_INSERT_ID();
-        CALL `usp-create-group-member`(user_id, 2);
+        CALL `usp_create_group_user_members`(user_id, 2);
    COMMIT;
 END;;
 
@@ -185,6 +185,18 @@ UPDATE degree
 SET is_deleted = '1'
 WHERE degree.id = id;
 COMMIT;
+END;;
+
+CREATE PROCEDURE `usp_delete_degree_subjects`(IN `degree_id` tinyint, IN `subject_id` tinyint)
+BEGIN
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+   BEGIN
+            ROLLBACK;
+            RESIGNAL;
+   END;
+    START TRANSACTION;
+    DELETE FROM degree_subjects WHERE degree_subjects.degree.id = degree.id AND degree_subjects.subject_id = subject_id;
+    COMMIT;
 END;;
 
 CREATE PROCEDURE `usp_delete_group`(IN `id` int)
@@ -665,4 +677,4 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_user` AS select `user
 DROP TABLE IF EXISTS `view_user_information`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_user_information` AS select `user_information`.`user_id` AS `user_id`,`user_information`.`name` AS `name`,`user_information`.`surname` AS `surname`,`user_information`.`dni` AS `dni`,`user_information`.`email` AS `email` from (`user_information` join `user` on(`user_information`.`user_id` = `user`.`id`)) where `user`.`is_deleted` = 0;
 
--- 2022-10-20 23:32:26
+-- 2022-10-27 22:28:12
