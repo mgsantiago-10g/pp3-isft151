@@ -15,11 +15,10 @@ class SubjectHandler
 	public function addSubject( int $degree_id, int $subject_id ) 
 	{
 		/*
-			$SQLAuthStatement = $connection->prepare("CALL `uusp_create_degree_subjects`(:degree_id, :subject_id)");
+			$SQLAuthStatement = $connection->prepare("CALL `usp_create_degree_subjects`(:degree_id, :subject_id)");
 			$SQLAuthStatement->bindParam(':degree_id', $degree_id);
 			$SQLAuthStatement->bindParam(':subject_id', $subject_id);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
 
@@ -28,8 +27,8 @@ class SubjectHandler
 		/*
 			$SQLAuthStatement = $connection->prepare("CALL `usp_delete_degree_subjects`(:degree_id, :subject_id)");
 			$SQLAuthStatement->bindParam(':degree_id', $degree_id);
+			$SQLAuthStatement->bindParam(':subject_id', $subject_id);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
 

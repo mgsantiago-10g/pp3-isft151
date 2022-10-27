@@ -20,16 +20,14 @@ class DegreeHandler
 			$SQLAuthStatement->bindParam(':description', $description);
 			$SQLAuthStatement->bindParam(':resolution', $resolution);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
-	public function remove( string $degree_id ) 
+	public function remove( int $degree_id ) 
 	{
 		/*	
 			$SQLAuthStatement = $connection->prepare("CALL `usp_delete_degree`(:id)");
 			$SQLAuthStatement->bindParam(':id', $degree_id);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
 	public function update( int $degree_id, string $name, string $description, string $resolution )
@@ -41,7 +39,6 @@ class DegreeHandler
 			$SQLAuthStatement->bindParam(':description', $description);
 			$SQLAuthStatement->bindParam(':resolution', $resolution);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
 	public function get( int $degree_id )

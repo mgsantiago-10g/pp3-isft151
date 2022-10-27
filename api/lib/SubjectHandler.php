@@ -19,7 +19,6 @@ class SubjectHandler
 			$SQLAuthStatement->bindParam(':name', $name);
 			$SQLAuthStatement->bindParam(':year', $year);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
 	public function remove( int $subject_id ) 
@@ -28,7 +27,6 @@ class SubjectHandler
 			$SQLAuthStatement = $connection->prepare("CALL `usp_delete_subject`(:id)");
 			$SQLAuthStatement->bindParam(':id', $subject_id);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
 	public function update( int $subject_id, string $name, $year ) 
@@ -39,7 +37,6 @@ class SubjectHandler
 			$SQLAuthStatement->bindParam(':name', $name);
 			$SQLAuthStatement->bindParam(':year', $year);
 			$SQLAuthStatement->execute();
-			$SQLAuthStatement->closeCursor();
 		*/
 	}
 	public function get( int $subject_id ) 
