@@ -25,7 +25,7 @@
             #get action
         }
         
-        public function create(){
+        public function getAll(){
             #get all actions
         }
 
