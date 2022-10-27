@@ -14,8 +14,8 @@ class DatabaseConnection
             $user = $configFile->user;
             $pass = $configFile->pass;
             $dbName = $configFile->name;
-            $this->$connection = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, $user, $pass);
-            $this->$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, $user, $pass);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (PDOException $connectionException) {
             $status = array('status' => 'db-error', 'description' => $connectionException->getMessage());
