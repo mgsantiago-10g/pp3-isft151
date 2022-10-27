@@ -6,9 +6,9 @@
  * https://www.gnu.org/licenses/gpl-3.0
  **/
 
-include_once "./database.php";
+include_once "./DatabaseConnection.php";
 
-class AuthManager
+class AuthHandler
 {
 	private $connection;
 	
