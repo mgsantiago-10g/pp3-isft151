@@ -1,6 +1,6 @@
 <?php 
 
-    include_once "./database.php";
+    include_once "./DatabaseConnection.php";
 
     class UserInformationHandler{
         private $connection;
@@ -25,7 +25,7 @@
             #get user info
         }
         
-        public function create(){
+        public function getAll(){
             #get all actions
         }
 
