@@ -12,7 +12,7 @@ class SubjectHandler
 		$connection = (new DataBaseConnection())->getInstance();
 	}
 	
-	public function create( string $name, $year ) : string
+	public function create( string $name, $year )
 	{
 		/*
 			$SQLAuthStatement = $connection->prepare("CALL `usp_create_subject`(:name, :year)");
