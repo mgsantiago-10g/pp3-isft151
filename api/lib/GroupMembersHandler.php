@@ -32,7 +32,7 @@
        
     }
 
-    public function getAllUsers(int $group_id)
+    public function getAllUsers()
     {
         
     }
