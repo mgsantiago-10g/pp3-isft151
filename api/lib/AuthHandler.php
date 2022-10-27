@@ -27,7 +27,7 @@ class AuthHandler
 		else 
 		{
 			//Validate user existence
-			$SQLAuthStatement = $this->connection->prepare("CALL `usp-authenticate-user`(:username)");
+			$SQLAuthStatement = $this->connection->prepare("CALL `usp_authenticate_user`(:username)");
 			$SQLAuthStatement->bindParam(':username', $username);
 			$SQLAuthStatement->execute();
 			$response = $SQLAuthStatement->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +41,7 @@ class AuthHandler
 					$token = hash("sha256", $username . $response[0]["password"]);
 					//If valid, create token and establish session
 					//toDo: take into account possible errors
-					$SQLSessionStatement =$this->connection->prepare("CALL `usp-create-user-session`(:id_user, :token)");
+					$SQLSessionStatement =$this->connection->prepare("CALL `usp_create_user_session`(:id_user, :token)");
 					$SQLSessionStatement->bindParam(':id_user', $id_user);
 					$SQLSessionStatement->bindParam(':token', $token);
 					$SQLSessionStatement->execute();
@@ -66,7 +66,7 @@ class AuthHandler
 	{
 		if( $this->validateSession($token)) 
 		{
-			$SQLStatement = $this->connection->prepare("CALL `usp-delete-user-session`(:token)");
+			$SQLStatement = $this->connection->prepare("CALL `usp_delete_user_session`(:token)");
 			$SQLStatement->bindParam(':token', $token);
 			$SQLStatement->execute();
 		}
@@ -80,7 +80,7 @@ class AuthHandler
 	{
 		$tokenStatus = null;
 		
-		$SQLStatement = $this->connection->prepare("CALL `usp-check-session-token`(:token)");
+		$SQLStatement = $this->connection->prepare("CALL `usp_check_session_token`(:token)");
         $SQLStatement->bindParam(':token',  $token );
         $SQLStatement->execute();
         $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
