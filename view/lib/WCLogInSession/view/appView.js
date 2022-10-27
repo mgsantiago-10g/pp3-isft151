@@ -1,15 +1,15 @@
-
 class AppView extends HTMLElement 
 {
     
-	constructor(){
+	constructor()
+    {
 
         super(); 
         this.container = document.createElement('div');
-        this.container.classList.add("container","w3-container", "w3-modal-content", "w3-card-4", "w3-animate-zoom", "w3-center");
+        this.container.classList.add("login-container","w3-container", "w3-modal-content", "w3-card-4", "w3-animate-zoom", "w3-center");
         
         this.logo = document.createElement('img');
-        this.logo.classList.add("w3-center","logo");
+        this.logo.classList.add("w3-center","login-logo");
         this.logo.src = './items/logo.png';
         
         
@@ -29,7 +29,7 @@ class AppView extends HTMLElement
 
         this.passwordLabel = document.createElement('label');
         this.passwordLabel.innerText = 'Contraseña';
-        this.passwordLabel.classList.add("login","text");
+        this.passwordLabel.classList.add("login-button","text");
         
 
         this.passwordInput = document.createElement('input');
@@ -45,42 +45,7 @@ class AppView extends HTMLElement
 
     }
 
-    getFormValues()
-    {
-        let values = {
-            username: this.usernameInput.value,
-            password: this.passwordInput.value
-        }
-        return values;
-    }
-    getSessionToken()
-    {
-	    let authData =
-	    {
-		    token: window.sessionStorage.getItem('token')
-	    };
-
-	    return authData;
-    }
-    welcomeView( data )
-    {
-	    if ( data.status == 'OK')
-	    {
-		    alert('Bienvenido al sistema usuario: '+data.response );
-		    window.sessionStorage.setItem('token', data.response );
-	    }else
-	    {
-		    alert('ERROR: '+data.description);
-	    }
-    }
-    onValidateUserButtonClick(data)
-    {
-	    
-	   fetch('./backend/test.php', { method:'post', body: JSON.stringify(this.getFormValues()) } )
-	    .then( response => response.json() )
-	    .then( response => { this.welcomeView(response) } );
-	
-    }
+   
         
 
     connectedCallback(){
