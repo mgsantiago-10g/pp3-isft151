@@ -125,6 +125,7 @@ caption
 {
 	display: flex; 
 	justify-content: flex-end;
+	text-align: center;
 }
 
 .flexright > input
@@ -315,5 +316,3 @@ body
 {
 	background-color: #F8F8F8;
 }
-
-

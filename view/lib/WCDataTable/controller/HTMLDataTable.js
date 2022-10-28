@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import {HTMLDataTableServerModel} from '../model/HTMLDataTableServerModel.js';
-import {HTMLDataTableView} from '../view/HTMLDataTableView.js';
+import {HTMLDataTableView} from '../view/userTable/HTMLDataTableView.js';
 
 class HTMLDataTable extends HTMLElement
 {
