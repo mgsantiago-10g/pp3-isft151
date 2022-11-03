@@ -48,7 +48,7 @@ class AccountantErrorTypes
         $SQLStatement->bindParam(':userId', $user_id);
         $SQLStatement->execute();
         $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($response);
+        
     }
 
     public function getAll()
@@ -56,7 +56,7 @@ class AccountantErrorTypes
         $SQLStatement = $this->connection->prepare("CALL `usp_getAll_audit`");
         $SQLStatement->execute();
         $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($response);
+        
        
     }
 
