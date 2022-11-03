@@ -60,6 +60,12 @@ class InicialPage extends HTMLElement {
 
         this.appendChild(this.footer);
 
+
+        this.singInButton.addEventListener('click', (event) => this.appController.onClickSingInButton(event) );
+		
+        this.logInButton.addEventListener('click', (event) => this.appController.onClickLogInButton(event) );
+		
+
     }
 }
 
