@@ -8,11 +8,18 @@ class AppController
         
     }
 
-    getLoginData()
+    onClickSingInButton () //crear cuenta
     {
-        
+
     }
 
     }
+
+    onClickLogInButton()  //iniciar sesión
+    {
+
+    }
+
+    
 
 export { AppController }
