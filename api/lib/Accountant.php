@@ -8,6 +8,11 @@
 
  include_once "./DatabaseConnection.php";
 
+class AccountantErrorTypes
+{
+    const ERR_INVALID_INPUT_DATA = 1;
+}
+
  class Accountant
  {
     private $connection;
@@ -17,17 +22,28 @@
         $connection = (new DataBaseConnection())->getInstance();
     }
 
-    public function create(int $user_id, string $action, $date)
+    //Revisar el parametro date. Eventu
+    public function create(int $user_id, string $action)//$date
     {
-        $SQLStatement = $this->connection->prepare("CALL `usp_create_audit`(:userId, :action, :date)");
+        if( $user_id <= 0 || $user_id == null || $action == null)
+        {
+            throw new Exception("Datos no válidos", AccountantErrorTypes::ERR_INVALID_INPUT_DATA);
+        }
+        //chequear el parametro date      
+        $SQLStatement = $this->connection->prepare("CALL `usp_create_audit`(:userId, :action");//:date)");
         $SQLStatement->bindParam(':userId', $user_id);
         $SQLStatement->bindParam(':action', $action);
-        $SQLStatement->bindParam(':date', $date);
+        //$SQLStatement->bindParam(':date', $date);
         $SQLStatement->execute();
+                
     }
 
     public function get(int $user_id)
     {
+        if ($user_id <= 0 || $user_id == null)
+        {
+            throw new Exception("Dato no válido", AccountantErrorTypes :: ERR_INVALID_INPUT_DATA);
+        }
         $SQLStatement = $this->connection->prepare("CALL `usp_get_audit`(:userId)");
         $SQLStatement->bindParam(':userId', $user_id);
         $SQLStatement->execute();
