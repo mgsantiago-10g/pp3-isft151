@@ -1,3 +1,5 @@
+//import { InicialPage } from "../inicialPage.js";
+
 
 class AppController
 {
@@ -8,9 +10,9 @@ class AppController
         
     }
 
-    onClickSingInButton () //crear cuenta
+    onClickSignInButton () //crear cuenta
     {
-
+        
     }
 
     }
