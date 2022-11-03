@@ -23,7 +23,7 @@ DECLARE EXIT HANDLER FOR SQLEXCEPTION
    COMMIT;
 END;;
 
-CREATE PROCEDURE `usp_create_audit`(IN `user_id` int, IN `action` varchar(256), IN `action_date` datetime)
+CREATE PROCEDURE `usp_create_audit`(IN `user_id` int, IN `action` varchar(256))
 BEGIN
 DECLARE EXIT HANDLER FOR SQLEXCEPTION 
 
@@ -34,7 +34,7 @@ DECLARE EXIT HANDLER FOR SQLEXCEPTION
 
 START TRANSACTION;
  INSERT INTO audit(audit.user_id, audit.action, audit.action_date) 
- VALUES (user_id, action, action_date);
+ VALUES (user_id, action, NOW());
 COMMIT;
 END;;
 
@@ -130,7 +130,7 @@ DECLARE EXIT HANDLER FOR SQLEXCEPTION
    START TRANSACTION;
         INSERT INTO user(username, password) VALUES (username, password);
         SET user_id = LAST_INSERT_ID();
-        CALL `usp_create_group_user_members`(user_id, 2);
+        CALL `usp_create_group_user_members`(2, user_id);
    COMMIT;
 END;;
 
@@ -308,7 +308,7 @@ SELECT view_group.id, view_group.name, view_group.description FROM view_group;;
 
 CREATE PROCEDURE `usp_getAll_group_permissions`()
 SELECT view_group_permissions.group_id, view_group_permissions.group_name,
-view_group_permissions.group_description, view_group_permissions.action.id,
+view_group_permissions.group_description, view_group_permissions.action_id,
 view_group_permissions.action_name, view_group_permissions.action_description  FROM view_group_permissions;;
 
 CREATE PROCEDURE `usp_getAll_group_user_members`()
@@ -361,7 +361,7 @@ SELECT view_group.id, view_group.name, view_group.description FROM view_group WH
 
 CREATE PROCEDURE `usp_get_group_permissions`(IN `group_id` int)
 SELECT view_group_permissions.group_id, view_group_permissions.group_name,
-view_group_permissions.group_description, view_group_permissions.action.id,
+view_group_permissions.group_description, view_group_permissions.action_id,
 view_group_permissions.action_name, view_group_permissions.action_description  FROM view_group_permissions WHERE view_group_permissions.group_id = group_id;;
 
 CREATE PROCEDURE `usp_get_group_user_members`(IN `group_id` int)
@@ -483,7 +483,6 @@ CREATE TABLE `action` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `action`;
 
 DROP TABLE IF EXISTS `audit`;
 CREATE TABLE `audit` (
@@ -492,7 +491,6 @@ CREATE TABLE `audit` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `audit`;
 
 DROP TABLE IF EXISTS `degree`;
 CREATE TABLE `degree` (
@@ -505,7 +503,6 @@ CREATE TABLE `degree` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `degree`;
 
 DROP TABLE IF EXISTS `degree_subjects`;
 CREATE TABLE `degree_subjects` (
@@ -517,7 +514,6 @@ CREATE TABLE `degree_subjects` (
   CONSTRAINT `fk_degree_subjects_subject1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `degree_subjects`;
 
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group` (
@@ -529,10 +525,6 @@ CREATE TABLE `group` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `group`;
-INSERT INTO `group` (`id`, `name`, `description`, `is_deleted`) VALUES
-(1,	'Administrator',	'Full set of permissions',	0),
-(2,	'Guest',	'No permissions',	0);
 
 DROP TABLE IF EXISTS `group_permissions`;
 CREATE TABLE `group_permissions` (
@@ -544,7 +536,6 @@ CREATE TABLE `group_permissions` (
   CONSTRAINT `fk_group_actions_group1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `group_permissions`;
 
 DROP TABLE IF EXISTS `group_user_members`;
 CREATE TABLE `group_user_members` (
@@ -556,7 +547,6 @@ CREATE TABLE `group_user_members` (
   CONSTRAINT `fk_group_user_members_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `group_user_members`;
 
 DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
@@ -568,7 +558,6 @@ CREATE TABLE `subject` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `subject`;
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -580,7 +569,6 @@ CREATE TABLE `user` (
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `user`;
 
 DROP TABLE IF EXISTS `user_information`;
 CREATE TABLE `user_information` (
@@ -597,7 +585,6 @@ CREATE TABLE `user_information` (
   CONSTRAINT `fk_user_information_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `user_information`;
 
 DROP TABLE IF EXISTS `user_session`;
 CREATE TABLE `user_session` (
@@ -612,7 +599,6 @@ CREATE TABLE `user_session` (
   CONSTRAINT `fk_user_session_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-TRUNCATE `user_session`;
 
 DROP VIEW IF EXISTS `view_action`;
 CREATE TABLE `view_action` (`id` int(11), `name` varchar(75), `description` varchar(128));
