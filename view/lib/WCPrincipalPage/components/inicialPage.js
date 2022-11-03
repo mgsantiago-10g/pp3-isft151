@@ -26,8 +26,8 @@ class InicialPage extends HTMLElement {
         this.centerCard.classList.add('w3-round-large', 'w3-padding', 'w3-display-middle', 'w3-opacity');
         // this.centerCard.id = 'center-card';
 
-        this.singInButton = new GenericButton('Create Account');
-        this.singInButton.classList.add('w3-margin', 'w3-opacity-off');
+        this.signInButton = new GenericButton('Create Account');
+        this.signInButton.classList.add('w3-margin', 'w3-opacity-off');
         this.logInButton = new GenericButton('Log In');
         this.logInButton.classList.add('w3-margin');
 
@@ -61,7 +61,7 @@ class InicialPage extends HTMLElement {
         this.appendChild(this.footer);
 
 
-        this.singInButton.addEventListener('click', (event) => this.appController.onClickSingInButton(event) );
+        this.signInButton.addEventListener('click', (event) => this.appController.onClickSignInButton(event) );
 		
         this.logInButton.addEventListener('click', (event) => this.appController.onClickLogInButton(event) );
 		
