@@ -78,13 +78,3 @@ class GroupPermissionsHandler
         }
     }
 }
-
-$handler = new GroupPermissionsHandler();
-try {
-    //$handler->addPermission(1,1); //works
-    //$handler->removePermission(2,1); //works
-    //var_dump($handler->getPermission(2)); //works
-    //var_dump($handler->getAllPermissions()); //works
-} catch (Exception $queryException) {
-    echo ($queryException->getMessage());
-}

@@ -110,14 +110,3 @@ class UserHandler
     }
 }
 
-$userHandler = new UserHandler();
-try {
-    //$userHandler->create("Jose", "4565"); //works
-    //$userHandler->remove(5); //works
-    //var_dump($userHandler->get(5)); //works
-    //var_dump($userHandler->getAll()); //works
-    //$userHandler->update(5,"Roberto","1213"); //works
-} catch (Exception $queryException) {
-    echo ($queryException->getMessage());
-}
-
