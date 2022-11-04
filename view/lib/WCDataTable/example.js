@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { HTMLDataTable } from './controller/HTMLDataTable.js';
-import { HTMLTextCell } from './view/userTable/HTMLTextCell.js';
-import { HTMLEmailCell } from './view/userTable/HTMLEmailCell.js';
+import { HTMLTextCell } from './view/HTMLTextCell.js';
+import { HTMLEmailCell } from './view/HTMLEmailCell.js';
 
 
 let dt = new HTMLDataTable();
