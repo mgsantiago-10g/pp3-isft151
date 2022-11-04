@@ -6,3 +6,5 @@ function main()
 
     document.body.appendChild(dataTableView);
 }
+
+window.addEventListener('load', main);
