@@ -1,6 +1,6 @@
 {
     "host": "localhost",
     "user": "root",
-    "pass": "isft151",
+    "pass": "root",
     "name": "isft-db"
 }

@@ -10,7 +10,10 @@
 
 class AccountantErrorTypes
 {
-    const ERR_INVALID_INPUT_DATA = 1;
+    const ERR_CREATE_ACCOUNTANT= 1;
+    const ERR_INVALID_ENTITY_ID = 2;
+    const ERR_GET_ACCOUNTANT = 3;
+    const ERR_GET_ALL_ACCOUNTANTS = 4;
 }
 
  class Accountant
@@ -25,16 +28,20 @@ class AccountantErrorTypes
     //Revisar el parametro date. Eventu
     public function create(int $user_id, string $action)//$date
     {
-        if( $user_id <= 0 || $user_id == null || $action == null)
+        if( $user_id <= 0 || $user_id == "" || $action == "")
         {
-            throw new Exception("Datos no válidos", AccountantErrorTypes::ERR_INVALID_INPUT_DATA);
+            throw new Exception("Invalid data", AccountantErrorTypes::ERR_CREATE_ACCOUNTANT);
         }
-        //chequear el parametro date      
-        $SQLStatement = $this->connection->prepare("CALL `usp_create_audit`(:userId, :action");//:date)");
-        $SQLStatement->bindParam(':userId', $user_id);
-        $SQLStatement->bindParam(':action', $action);
-        //$SQLStatement->bindParam(':date', $date);
-        $SQLStatement->execute();
+        try{
+            //chequear el parametro date      
+            $SQLStatement = $this->connection->prepare("CALL `usp_create_audit`(:userId, :action");//:date)");
+            $SQLStatement->bindParam(':userId', $user_id);
+            $SQLStatement->bindParam(':action', $action);
+            //$SQLStatement->bindParam(':date', $date);
+            $SQLStatement->execute();
+        } catch(PDOException $dbException){
+            throw new Exception("Error data", AccountantErrorTypes::ERR_CREATE_ACCOUNTANT);
+        }
                 
     }
 
@@ -42,23 +49,39 @@ class AccountantErrorTypes
     {
         if ($user_id <= 0 || $user_id == null)
         {
-            throw new Exception("Dato no válido", AccountantErrorTypes :: ERR_INVALID_INPUT_DATA);
+            throw new Exception("Invalid ID", AccountantErrorTypes :: ERR_GET_ACCOUNTANT);
         }
-        $SQLStatement = $this->connection->prepare("CALL `usp_get_audit`(:userId)");
-        $SQLStatement->bindParam(':userId', $user_id);
-        $SQLStatement->execute();
-        $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
-        
+        try{
+            $SQLStatement = $this->connection->prepare("CALL `usp_get_audit`(:userId)");
+            $SQLStatement->bindParam(':userId', $user_id);
+            $SQLStatement->execute();
+            $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $dbException) {
+            throw new Exception("Invalid ID", AccountantErrorTypes::ERR_GET_ACCOUNTANT);
+        }    
     }
 
     public function getAll()
     {
-        $SQLStatement = $this->connection->prepare("CALL `usp_getAll_audit`");
-        $SQLStatement->execute();
-        $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
-        
+        try{
+            $SQLStatement = $this->connection->prepare("CALL `usp_getAll_audit`");
+            $SQLStatement->execute();
+            $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+        }catch(PDOException $dbException){
+            throw new Exception("Error gatting all accountants", AccountantErrorTypes::ERR_GET_ALL_ACCOUNTANTS);
+        }
        
     }
 
  }
+
+/*$handler = new Accountant();
+try {
+    $handler->create(1, 'hola');//works
+    $handler->get(1); //works
+    //var_dump($handler->getPermission(2)); //works
+    //var_dump($handler->getAllPermissions()); //works
+} catch (Exception $queryException) {
+    echo ($queryException->getMessage());
+}*/
  ?>
