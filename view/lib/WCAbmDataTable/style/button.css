@@ -1,0 +1,16 @@
+
+.data-table-button
+{
+	margin: 10px;
+	background-color: transparent;
+	border: 1px solid #000;
+	padding: 8px 12px;
+	color: #fff;
+	cursor: pointer;	
+	transition: 0.5s all;
+}
+
+.data-table-button:hover
+{
+	background-color:  #368dff;
+}
