@@ -75,13 +75,14 @@ class AccountantErrorTypes
 
  }
 
-/*$handler = new Accountant();
-try {
-    $handler->create(1, 'hola');//works
-    $handler->get(1); //works
-    //var_dump($handler->getPermission(2)); //works
-    //var_dump($handler->getAllPermissions()); //works
-} catch (Exception $queryException) {
-    echo ($queryException->getMessage());
-}*/
+
+    /*$handler = new Accountant();
+    try {
+        $handler->create(1, 'hola');//works
+        $handler->get(1); //works
+        var_dump($handler->get(2)); //works
+        var_dump($handler->getAll()); //works
+    } catch (Exception $queryException) {
+        echo ($queryException->getMessage());
+    }*/
  ?>

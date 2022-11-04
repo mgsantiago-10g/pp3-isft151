@@ -663,4 +663,4 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_user` AS select `user
 DROP TABLE IF EXISTS `view_user_information`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_user_information` AS select `user_information`.`user_id` AS `user_id`,`user_information`.`name` AS `name`,`user_information`.`surname` AS `surname`,`user_information`.`dni` AS `dni`,`user_information`.`email` AS `email` from (`user_information` join `user` on(`user_information`.`user_id` = `user`.`id`)) where `user`.`is_deleted` = 0;
 
--- 2022-11-03 22:14:36
+-- 2022-10-27 22:28:12
