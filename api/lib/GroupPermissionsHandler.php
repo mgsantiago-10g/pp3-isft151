@@ -1,6 +1,6 @@
 <?php
 
-include_once "./DatabaseConnection.php";
+include_once "DatabaseConnection.php";
 
 class GroupPermissionsHandlerErrorTypes
 {
@@ -50,7 +50,7 @@ class GroupPermissionsHandler
         }
     }
 
-    public function getPermission(int $groupId)
+    public function getPermissions(int $groupId)
     {
         if ($groupId <= 0) {
             throw new Exception("Invalid id", GroupPermissionsHandlerErrorTypes::ERR_INVALID_ENTITY_ID);

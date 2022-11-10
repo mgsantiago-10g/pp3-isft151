@@ -1,6 +1,6 @@
 <?php
 
-include_once "./DatabaseConnection.php";
+include_once "DatabaseConnection.php";
 
 class UserHandlerErrorTypes
 {
@@ -110,3 +110,5 @@ class UserHandler
     }
 }
 
+$connection = new UserHandler();
+var_dump($connection->getConnection());
