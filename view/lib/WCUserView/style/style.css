@@ -1,0 +1,130 @@
+/* ----------Clases del objeto / Clases de formato y fondo--------- */
+
+.main-page
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.background-image{
+    background-image: url(../img/Fondo-Azul.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+/* ----------Header---------- */
+
+.header{
+    width: 100%;
+    padding: 10px;
+    height: 8%;
+    background-color: rgba(0, 171, 239, 0.25);
+    color: white;
+}
+
+.main-logo{
+    background-image: url(../img/ISFT.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+}
+
+
+/* ----------Contenedor de nav y body---------- */
+
+.container{
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+
+
+/* ---------Barra de navegacion lateral izquierda--------- */
+
+.nav-left{
+    width: 63px;
+
+    margin: 20px 0;
+
+    border-top: 3px solid #ffffff80;
+    border-right: 3px solid #ffffff80;
+    border-bottom: 3px solid #ffffff80;
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.button-user{
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(../img/Botton-User-Hover.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    margin: 0;
+    border: none;
+}
+
+.button-user:hover{
+    background-color: rgba(0, 171, 239, 0.25);
+}
+
+.button-user:active{
+    background-image: url(../img/Botton-User-Hover.png);
+}
+
+.button-group{
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(../img/Botton-Group.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    margin: 0;
+    border: none;
+}
+
+.button-group:hover{
+    background-color: rgba(0, 171, 239, 0.25);
+    /* background-color: rgba(91, 91, 143, 0.493); */
+}
+
+.button-group:active{
+    background-image: url(../img/Botton-Group-Hover.png);
+}
+
+
+/* ----------Body---------- */
+
+.rest-height
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 20px;
+}
+
+.body-content{
+    background-color: rgba(0, 171, 239, 0.25);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+
+/* ----------Footer---------- */
+
+.footer{
+    width: 100%;
+    background-color: rgba(0, 171, 239, 0.25);
+}
+
+
+/* Copyright Agustin Souto 2022 / Chango */
