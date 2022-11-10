@@ -23,76 +23,72 @@ class DegreeHandler
 	
 	public function create( string $name, string $description, string $resolution ) 
 	{
-		if($name && $description && $resolution)
-		{
-			try
-			{
-				$SQLAuthStatement = $this->connection->prepare("CALL `usp_create_degree`(:name, :description, :resolution)");
-				$SQLAuthStatement->bindParam(':name', $name);
-				$SQLAuthStatement->bindParam(':description', $description);
-				$SQLAuthStatement->bindParam(':resolution', $resolution);
-				$SQLAuthStatement->execute();
-			}
-			catch(Exception $exception)
-			{
-				throw new Exception('Error: failed to create degree',  DegreeHandlerErrorTypes::ERROR_DB_CREATE_DEGREE);
-			}
-		}
-		else
+		if( !($name && $description && $resolution) )
 		{
 			throw new Exception('Error: Missing parameter/s.',  DegreeHandlerErrorTypes::ERROR_INVALID_INPUT);
 		}
+
+		try
+		{
+			$SQLAuthStatement = $this->connection->prepare("CALL `usp_create_degree`(:name, :description, :resolution)");
+			$SQLAuthStatement->bindParam(':name', $name);
+			$SQLAuthStatement->bindParam(':description', $description);
+			$SQLAuthStatement->bindParam(':resolution', $resolution);
+			$SQLAuthStatement->execute();
+		}
+		catch(Exception $exception)
+		{
+			throw new Exception('Error: failed to create degree',  DegreeHandlerErrorTypes::ERROR_DB_CREATE_DEGREE);
+		}
+		
 	}
 	public function remove( int $degree_id ) 
 	{
-		if($degree_id && $degree_id > 0)
-		{
-			try
-			{
-				$SQLAuthStatement = $this->connection->prepare("CALL `usp_delete_degree`(:id)");
-				$SQLAuthStatement->bindParam(':id', $degree_id);
-				$SQLAuthStatement->execute();
-			}
-			catch(Exception $e)
-			{
-				throw new Exception('Error: failed to delete degree',  DegreeHandlerErrorTypes::ERROR_DB_DELETE_DEGREE);
-			}
-		}
-		else
+		if( !($degree_id && $degree_id > 0) )
 		{
 			throw new Exception('Error: Missing parameter/s.',  DegreeHandlerErrorTypes::ERROR_INVALID_INPUT);
+		}
 
+		try
+		{
+			$SQLAuthStatement = $this->connection->prepare("CALL `usp_delete_degree`(:id)");
+			$SQLAuthStatement->bindParam(':id', $degree_id);
+			$SQLAuthStatement->execute();
+		}
+		catch(Exception $e)
+		{
+			throw new Exception('Error: failed to delete degree',  DegreeHandlerErrorTypes::ERROR_DB_DELETE_DEGREE);
 		}
 		
 	}
+
 	public function update( int $degree_id, string $name, string $description, string $resolution )
 	{
-		if( ($name && $description && $resolution) && ($degree_id && $degree_id > 0))
-		{
-			try
-			{
-				$SQLAuthStatement = $this->connection->prepare("CALL `usp_update_degree `(:id, :name, :description, :resolution)");
-				$SQLAuthStatement->bindParam(':id', $degree_id);
-				$SQLAuthStatement->bindParam(':name', $name);
-				$SQLAuthStatement->bindParam(':description', $description);
-				$SQLAuthStatement->bindParam(':resolution', $resolution);
-				$SQLAuthStatement->execute();
-			}
-			catch(Exception $e)
-			{
-				throw new Exception('Error: failed to update degree',  DegreeHandlerErrorTypes::ERROR_DB_UPDATE_DEGREE);
-			}
-		}
-		else
+		if( !($name && $description && $resolution) && !($degree_id && $degree_id > 0))
 		{
 			throw new Exception('Error: Missing parameter/s.',  DegreeHandlerErrorTypes::ERROR_INVALID_INPUT);
 		}
-		
+		try
+		{
+			$SQLAuthStatement = $this->connection->prepare("CALL `usp_update_degree `(:id, :name, :description, :resolution)");
+			$SQLAuthStatement->bindParam(':id', $degree_id);
+			$SQLAuthStatement->bindParam(':name', $name);
+			$SQLAuthStatement->bindParam(':description', $description);
+			$SQLAuthStatement->bindParam(':resolution', $resolution);
+			$SQLAuthStatement->execute();
+		}
+		catch(Exception $e)
+		{
+			throw new Exception('Error: failed to update degree',  DegreeHandlerErrorTypes::ERROR_DB_UPDATE_DEGREE);
+		}
 	}
+
 	public function get( int $degree_id )
 	{
-		if($degree_id && $degree_id > 0)
+		if( !($degree_id && $degree_id > 0) )
 		{
+			throw new Exception('Error: Missing parameter/s.',  DegreeHandlerErrorTypes::ERROR_INVALID_INPUT);
+		}
 			try
 			{
 				$SQLAuthStatement = $this->connection->prepare("CALL `usp_get_degree`(:id)");
@@ -105,11 +101,6 @@ class DegreeHandler
 			{
 				throw new Exception('Error: failed to get degree',  DegreeHandlerErrorTypes::ERROR_DB_GET_DEGREE);
 			}
-		}
-		else
-		{
-			throw new Exception('Error: Missing parameter/s.',  DegreeHandlerErrorTypes::ERROR_INVALID_INPUT);
-		}
 
 	}
 	public function getAll() 
