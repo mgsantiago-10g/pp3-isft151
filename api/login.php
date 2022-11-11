@@ -10,24 +10,22 @@ include_once "./lib/AuthHandler.php";
 
 try
 {
-    //Get Input Data
 	$input = json_decode(file_get_contents('php://input'));
 	$password = $input->password;
 	$username = $input->username;
 	
-	//Check input conditions (patterns, sizes, conditions... )
+	if (gettype($password) != "string" || gettype($username) != "string" || is_null($username) || empty($username) || is_null($password) || empty($password)) {
+        throw new Exception("Invalid username and/or password", 1);
+    }
     
-    //Execute API Class Method/Procedure
     $authInstance = new AuthManager();
-    $authInstance->login($username, $password);
+    $response = $authInstance->login($username, $password);
     
-    //Process output
-    
-    //Build Client Response
-}
-catch (Exception $connectionException)
-{
-    //Handle Possible Errors
-    
-    //Build Error Client Messages
+    echo json_encode($response);
+}catch (Exception $connectionException) {
+    $status = array('status' => 'Error', 'response' => 'Error processing request');
+    echo json_encode($status);
+} catch (JsonException $jsonException) {
+    $status = array('status' => 'Error', 'response' => 'Error invalid request format');
+    echo json_encode($status);
 }
