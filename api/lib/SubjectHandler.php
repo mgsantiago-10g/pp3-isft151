@@ -59,7 +59,7 @@ class SubjectHandler
 	}
 	public function update( int $subject_id, string $name, $year ) 
 	{
-		if( !($subject_id && $name && $year) && !($subject_id > 0) )
+		if( !(  ($subject_id && $name && $year) && $subject_id > 0)  )
 		{
 			throw new Exception('Error: Missing parameter/s.',  SubjectHandlerErrorTypes::ERROR_INVALID_INPUT);
 		}
