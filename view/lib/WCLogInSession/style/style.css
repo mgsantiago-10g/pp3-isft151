@@ -1,6 +1,8 @@
 .bgimage {
-    background-size: 100%;
-    background-color: #333333;
+    background-image: url(../items/Fondo-Azul.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 .login-container{
     display:flex;

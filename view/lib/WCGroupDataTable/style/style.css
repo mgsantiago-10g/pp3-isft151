@@ -1,0 +1,21 @@
+
+.modal-background{
+	background-color: rgb(51,103,214);
+}
+.modal-button
+{
+	background-color: rgb(51,103,214);
+	border: 1px solid rgb(145,152,214);
+	height: calc( var(--column-row-heigth)*0.70);
+	padding-left: 15px;
+	padding-right: 15px;
+	margin: 8px;
+	color: #fff;
+	cursor: pointer;	
+	transition: 0.5s all;
+}
+
+.modal-button:hover
+{
+	background-color:  #368dff;
+}

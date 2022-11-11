@@ -10,7 +10,7 @@ class AppView extends HTMLElement
         
         this.logo = document.createElement('img');
         this.logo.classList.add("w3-center","login-logo");
-        this.logo.src = './items/logo.png';
+        this.logo.src = './items/ISFT.png';
         
         
         this.loginForm = document.createElement('div');
@@ -19,12 +19,12 @@ class AppView extends HTMLElement
 
         this.usernameLabel = document.createElement('label');
         this.usernameLabel.innerText = 'Usuario';
-        this.usernameLabel.classList.add("login","text");
+        this.usernameLabel.classList.add("login-button","text");
         
 
         this.usernameInput = document.createElement('input');
         this.usernameInput.classList.add("w3-input", "w3-border", "w3-margin-bottom");
-        this.usernameInput.placeholder = "ingresar usuario";
+        this.usernameInput.placeholder = "Ingresar usuario";
         this.usernameInput.setAttribute('required','true');
 
         this.passwordLabel = document.createElement('label');

@@ -1,10 +1,13 @@
 
 .data-table-button
 {
-	margin: 10px;
 	background-color: transparent;
-	border: 1px solid #000;
-	padding: 8px 12px;
+	border: 1px solid rgb(145,152,214);
+	height: calc( var(--column-row-heigth)*0.70);
+	border-radius: 10%;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin: 8px;
 	color: #fff;
 	cursor: pointer;	
 	transition: 0.5s all;
