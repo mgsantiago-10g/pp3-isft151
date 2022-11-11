@@ -26,7 +26,7 @@
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_INVALID_USER_DATA) ;
             }
             
-            if( !is_null($user_id) ){
+            if( !is_null($user_id) && $user_id > 0 ){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_INVALID_USER_ID) ;;
             }
 
@@ -38,15 +38,13 @@
                 $SQLStatement->bindParam(':dni', $dni);
                 $SQLStatement->bindParam(':email', $email);
                 $SQLStatement->execute();
-            }catch(Exception $e){
+            }catch(PDOException $dbException){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_CREATE_USER_INFORMATION) ;;
             }
-
-            return 'Success';
         }
 
         public function remove(int $user_information_id){
-            if( !is_null($user_information_id) ){
+            if( !is_null($user_information_id) && $user_information_id > 0){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_INVALID_USER_INFORMATION_ID) ;;
             }
 
@@ -54,11 +52,9 @@
                 $SQLStatement =$this->connection->prepare("CALL `usp_delete_user_information`(:id_user_information)");
                 $SQLStatement->bindParam(':id_user_information', $user_information_id);
                 $SQLStatement->execute();
-            }catch(Exception $e){
+            }catch(PDOException $dbException){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_REMOVE_USER_INFORMATION) ;;
             }
-
-            return 'Success';
         }
         
         public function update(int $user_id, string $name, string $surname, string $dni, string $email){
@@ -66,7 +62,7 @@
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_INVALID_USER_DATA) ;;
             }
             
-            if( !is_null($user_id) ){
+            if( !is_null($user_id) && $user_id > 0){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_INVALID_USER_ID) ;;
             }
 
@@ -76,15 +72,13 @@
                 $SQLStatement->bindParam(':name', $description);
                 $SQLStatement->bindParam(':description', $description);
                 $SQLStatement->execute();
-            }catch(Exception $e){
+            }catch(PDOException $dbException){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_UPDATE_USER_INFORMATION) ;;
             }
-
-            return 'Success';
         }
         
         public function get(int $user_id){
-            if( !is_null($user_id) ){
+            if( !is_null($user_id) && $user_id > 0 ){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_INVALID_USER_ID) ;;
             }
 
@@ -92,22 +86,22 @@
                 $SQLStatement =$this->connection->prepare("CALL `usp_get_user_information`(:id_user_information)");
                 $SQLStatement->bindParam(':id_user_information', $user_id);
                 $SQLStatement->execute();
-            }catch(Exception $e){
+                $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+                return $response;
+            }catch(PDOException $dbException){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_GET_USER_INFORMATION) ;;
             }
-
-            return 'Success';
         }
         
         public function getAll(){
             try{
                 $SQLStatement =$this->connection->prepare("CALL `usp_getAll_user_information`()");
                 $SQLStatement->execute();
-            }catch(Exception $e){
+                $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
+                return $response;
+            }catch(PDOException $dbException){
                 throw Exception('Error', UserInformationHandlerErrorTypes::ERR_GET_ALL_USERS_INFORMATION) ;;
             }
-
-            return 'Success';
         }
 
     };
