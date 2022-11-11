@@ -64,7 +64,7 @@ class DegreeHandler
 
 	public function update( int $degree_id, string $name, string $description, string $resolution )
 	{
-		if( !($name && $description && $resolution) && !($degree_id && $degree_id > 0))
+		if( !( ($name && $description && $resolution) && ($degree_id && $degree_id > 0) ) )
 		{
 			throw new Exception('Error: Missing parameter/s.',  DegreeHandlerErrorTypes::ERROR_INVALID_INPUT);
 		}

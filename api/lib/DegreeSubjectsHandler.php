@@ -24,7 +24,7 @@ class SubjectHandler
 	
 	public function addSubject( int $degree_id, int $subject_id ) 
 	{
-		if( !($degree_id && $subject_id) && !($degree_id > 0 && $subject_id > 0))
+		if( !(  ($degree_id && $subject_id) && ($degree_id > 0 && $subject_id > 0) ) )
 		{
 			throw new Exception('Error: Missing parameter/s.',  DegreeSubjectsHandlerErrorTypes::ERROR_INVALID_INPUT);
 		}
@@ -43,7 +43,7 @@ class SubjectHandler
 
 	public function removeSubject( int $degree_id, int $subject_id ) 
 	{
-		if( !($degree_id && $subject_id) && !($degree_id > 0 && $subject_id > 0))
+		if( !(  ($degree_id && $subject_id) && ($degree_id > 0 && $subject_id > 0) ))
 		{
 			throw new Exception('Error: Missing parameter/s.',  DegreeSubjectsHandlerErrorTypes::ERROR_INVALID_INPUT);
 		}
@@ -62,7 +62,7 @@ class SubjectHandler
 
 	public function getSubject( int $degree_id, int $subject_id ) 
 	{
-		if( !($degree_id && $subject_id) && !($degree_id > 0 && $subject_id > 0))
+		if( !( ($degree_id && $subject_id) && ($degree_id > 0 && $subject_id > 0)) )
 		{
 			throw new Exception('Error: Missing parameter/s.',  DegreeSubjectsHandlerErrorTypes::ERROR_INVALID_INPUT);
 		}
