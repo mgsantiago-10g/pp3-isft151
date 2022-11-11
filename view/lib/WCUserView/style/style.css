@@ -10,7 +10,7 @@
 }
 
 .background-image{
-    background-image: url(../img/Fondo-Azul.jpg);
+    background-image: url(../../../res/Fondo-Azul.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -28,7 +28,7 @@
 }
 
 .main-logo{
-    background-image: url(../img/ISFT.png);
+    background-image: url(../../../res/ISFT.png);
     background-repeat: no-repeat;
     background-size: contain;
     height: 100%;
@@ -61,7 +61,7 @@
 
 .button-user{
     background-color: rgba(0, 0, 0, 0);
-    background-image: url(../img/Botton-User-Hover.png);
+    background-image: url(../../../res/Botton-User-Hover.png);
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
@@ -76,12 +76,12 @@
 }
 
 .button-user:active{
-    background-image: url(../img/Botton-User-Hover.png);
+    background-image: url(../../../res/Botton-User-Hover.png);
 }
 
 .button-group{
     background-color: rgba(0, 0, 0, 0);
-    background-image: url(../img/Botton-Group.png);
+    background-image: url(../../../res/Botton-Group.png);
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
@@ -97,7 +97,7 @@
 }
 
 .button-group:active{
-    background-image: url(../img/Botton-Group-Hover.png);
+    background-image: url(../../../res/Botton-Group-Hover.png);
 }
 
 
