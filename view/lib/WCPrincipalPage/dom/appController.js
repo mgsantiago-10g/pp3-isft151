@@ -12,16 +12,16 @@ class AppController
 
     onClickSignInButton () //crear cuenta
     {
-        
-    }
-
-    }
-
-    onClickLogInButton()  //iniciar sesión
-    {
-
+        this.innerView.setSignInView();
     }
 
     
 
+    onClickLogInButton()  //iniciar sesión
+    {
+		this.innerView.setLogInView();
+    }
+
+ 
+}
 export { AppController }
