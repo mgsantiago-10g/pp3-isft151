@@ -1,12 +1,14 @@
 <?php
 /**
- * Copyright (c) 2022 Thiago Cabrera All rights reserved.
+ * Copyright (c) 2022 Emi Suarez All rights reserved.
  * Contact: thiagofcabrera00@gmail.com
  * Released under the GPLv3
  * https://www.gnu.org/licenses/gpl-3.0
  **/
 
  include_once "./DatabaseConnection.php";
+ 
+ 
 
 class GroupMemberHandlerErrorTypes
 {
@@ -29,7 +31,7 @@ class GroupMemberHandlerErrorTypes
     {
         if( $user_id <= 0 || $user_id == null ||$user_id == "" || $group_id == null || $group_id == "" || $group_id <= 0)
         {
-            throw new Exception("Datos no válidos", GroupMemberHandlerErrorTypes::ERR_ADD_USER);
+            throw new Exception("Invalid data", GroupMemberHandlerErrorTypes::ERR_ADD_USER);
         }
         try{
             $SQLStatement = $this->connection->prepare("CALL `usp_create_group_user_members`(:groupId, :userId)");
@@ -45,7 +47,7 @@ class GroupMemberHandlerErrorTypes
     {
         if( $user_id <= 0 || $user_id == null || $user_id == "" || $group_id == null || $group_id == ""|| $group_id <= 0)
         {
-            throw new Exception("Datos no válidos", GroupMemberHandlerErrorTypes::ERR_REMOVE_USER);
+            throw new Exception("Invalid data", GroupMemberHandlerErrorTypes::ERR_REMOVE_USER);
         }
         try{
             $SQLStatement = $this->connection->prepare("CALL `usp_delete_group_user_members`(:groupId, :userId)");
@@ -63,7 +65,7 @@ class GroupMemberHandlerErrorTypes
     {
         if( $user_id <= 0 || $user_id == null || $user_id == ""|| $group_id == null|| $group_id == "" || $group_id <= 0)
         {
-            throw new Exception("Datos no válidos", GroupMemberHandlerErrorTypes::ERR_GET_USER);
+            throw new Exception("Invalid data", GroupMemberHandlerErrorTypes::ERR_GET_USER);
         }
         try{
             $SQLStatement = $this->connection->prepare("CALL `usp_get_group_user_members`(:groupId, :userId)");
@@ -73,9 +75,8 @@ class GroupMemberHandlerErrorTypes
             $response = $SQLStatement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $dbException){
             throw new Exception("Error getting user", GroupMemberHandlerErrorTypes::ERR_GET_USER);
-        }
+        }  
         
-       
     }
 
     public function getAllUsers()
@@ -89,6 +90,7 @@ class GroupMemberHandlerErrorTypes
         }
         
     }
+
 
  }
  ?>
