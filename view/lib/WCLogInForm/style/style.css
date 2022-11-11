@@ -1,0 +1,47 @@
+.genericButton
+{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgb(2,0,36);
+    color: #fff;
+    border: none;
+    box-shadow: 2px 3px 5px black;
+    transition: all .5s;
+}
+
+.genericButton:hover
+{
+    background-color: tomato !important;
+}
+
+.genericButton:active
+{
+    background-color: blueviolet !important;
+}
+
+.main-page
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+#center-card
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 30%;
+}
+
+/* Copyright Agustin Souto 2022 / Chango */
