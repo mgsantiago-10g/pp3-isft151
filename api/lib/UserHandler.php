@@ -109,6 +109,3 @@ class UserHandler
         }
     }
 }
-
-$connection = new UserHandler();
-var_dump($connection->getConnection());
